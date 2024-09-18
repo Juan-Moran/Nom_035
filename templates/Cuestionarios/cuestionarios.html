@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+Lista de Cuestionarios de la Norma Oficial Méxicana 035
+{% endblock %}
+
+{% block body %}
+<style>
+    table, th, td {
+    border: 1px solid black;
+    font-size 10;
+    border-collapse: collapse;}
+</style>
+<div class= "container">
+    <div class = "row">
+        <div class = "col">
+            <table class = "table table-primary">
+                <tr><th class = "table table-dark" >Nombre del cuestionario</th>
+                    <th class = "table table-dark">Reactivos capturados</th>
+                    <th class = "table table-dark">Control</th>
+                    <th class = "table table-dark">Acción</th>
+                </tr>
+                {% for preg, num, cont in renglon %}
+                    <tr>
+                        <td>{{ preg }}</td>
+                        <td>{{ num }}</td>
+                        {%if cont %}
+                          <td class = "table table-primary"> Completo</td>
+                        {%else%}
+                          <td class = "table table-danger"> Vacío </td>
+                        {% endif %}
+                        <td>"comprobar control"</td>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>
+    </div>    
+</div>
+    
+{% endblock %}

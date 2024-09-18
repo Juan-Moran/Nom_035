@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+Resultados de la encuesta
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <H1>Resultados de: {{cuestionario.nombre}}</H1>
+
+    <div class= "container">
+        <div class= "card mx-auto" style="width: 50rem;">
+            <div class = "card-body">
+                <h5 class="card-title">{{trabajador.nombre}}</h5>
+                {% for reng in resultados %}
+                 {% if "MUY ALTO" in reng %}
+                 <p class="bg-danger text-warning">{{reng}}</p>
+                 {% elif "ALTO" in reng %}
+                 <p class="bg-warning text-danger">{{reng}}</p>
+                 {% elif "=Medio" in reng%} 
+                    <p class="text-warning">{{reng}}</p>
+                 {% elif "-bajo" in reng%} 
+                    <p class="text-primary">{{reng}}</p>  
+                 {% elif "-nulo" in reng%} 
+                    <p class="text-success">{{reng}}</p>
+                {% else %} 
+                    <p>{{reng}}</p>
+                 {% endif %}
+                {% endfor %}
+                <br> 
+                {{cfinal}}  
+                <a href="{% url 'lista_empleados' trabajador.trabajaEn.pk%}">
+                <button class="btn btn-sm btn-primary" method='post'>Regresar</button>
+                  </a>
+                </form>
+            </div>
+            
+        </div>
+    <div>
+    
+    
+{% endblock %}
+

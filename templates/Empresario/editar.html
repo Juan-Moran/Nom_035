@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+Edición de un Empresario
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<H1>Edición {{empresario}}</H1>
+
+<div class= "container">
+            <div class= "card mx-auto" style="width: 50rem;">
+                <div class = "card-body">
+                    <h5 class="card-title">Datos del empresario</h5>
+                    <form action = "{% url 'edita_empresario' empresario.pk%}" method = "post">
+                        {% csrf_token %}
+                        {{ forma | crispy }}
+                    <div class> 
+                        <input type="reset" class= "btn btn-sm btn-danger" value="Cancelar">
+                        <input type="submit" class="btn btn-sm btn-primary" value="Guardar">
+                    </div>
+                    </form>
+                    </div>
+            </div>
+            
+       
+        
+</div>
+    
+{% endblock %}

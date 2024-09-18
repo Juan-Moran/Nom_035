@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Lista de Cuestionarios de la Norma Oficial Méxicana 035
+{% endblock %}
+
+{% block body %}
+<style>
+    table, th, td {
+    border: 1px solid black;
+    font-size 10;
+    border-collapse: collapse;}
+</style>
+<H2> {{nombre}}</H2>
+<div class= "container">
+    <div class = "row">
+        <div class = "col">
+            <table class = "table table-striped table-hover table-primary table-bordered table-sm">
+                <tr><th class = "table table-dark" >Numero de pregunta/sección</th>
+                    <th class = "table table-dark">Reactivo o sección</th>
+                    <th class = "table table-dark">Tipo</th>
+                    <th class = "table table-dark">???</th>
+                </tr>
+                {% for preg in lista %}
+                <tr>
+                    <td>{{ preg.num }}</td>
+                    <td>{{ preg.reactivo }}</td>
+                    <td>{{ preg.tipo }}</td>
+                    <td><a href="edita/{{preg.id}}">"Editar"</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

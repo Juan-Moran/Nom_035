@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+Resultados de {{ empresa.razonSocial.strip }}
+{% endblock %}
+
+{% block body %}
+<H1> Resultados de las encuestas </H1>
+<style>
+    table, th, td {
+    border: 1px solid black;
+    font-size 10;
+    border-collapse: collapse;}
+
+    .col-empresa {
+        width: 450px;
+        word-wrap: break-word;}
+</style>
+<div class= "container">
+    <div class = "row">
+        <div class = "col">
+            <table class = "table table-hover table-strip table-primary">
+                <tr><th class = "col-empresa table table-dark" >Núm.</th>
+                    <th class = "table table-dark">Cuestionario</th>
+                    <th class = "table table-dark">Acción</th>
+                </tr>
+                
+                {% for cues in cuestionarios %}
+                    <tr>
+                        <td class="col-empresa">{{ cues.numero }}</td>
+                        <td>{{ cues.desc }} </td>
+                        <td><a href="{% url 'exportar' empresa.pk cues.pk %}"><button class="btn btn-primary">Exportar</button></a><p></p>
+                        </td>
+                    </tr>
+                {% empty %}
+                <td> Nada que mostrar </td>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>    
+</div>
+    
+{% endblock %}

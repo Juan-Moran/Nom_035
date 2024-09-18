@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+Empresarios
+{% endblock %}
+
+{% block body %}
+    <H1>Empresarios</H1>
+
+    <div class= "container">
+        <div class = "row">
+            <div class = "col">
+                <table class = "table table-primary">
+                    <tr><th class = "table table-dark" >Nombre</th>
+                        <th class = "table table-dark">número de empresas</th>
+                        <th class = "table table-dark">Acción</th>
+                    </tr>
+                
+                 {% for p in Ente %}
+                    <tr>
+                    <td>
+                    {{p.nombre }}</td>
+                    <td>
+                    {{p.nempresas }} </td>
+                    <td> 
+                    <a href="{% url 'ver_empresas' p.id %} "><button class="btn btn-primary">Seleccionar</button></a> </td>
+                </tr>
+                {% empty %}
+                <a> Ninguno que mostrar</a> 
+                {% endfor %}
+            </table>
+            <a href="{% url 'registra' %}">agregar un empresario</a>
+            {{ menu }}
+            </div>
+        <div>
+    </div>    
+{% endblock %}
+

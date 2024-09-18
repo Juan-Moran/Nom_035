@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Encuesta
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <H1>Encuesta</H1>
+
+    <div class= "container">
+        <div class= "card mx-auto" style="width: 50rem;">
+            <div class = "card-body">
+                <h5 class="card-title"></h5>
+                <form method = "post">
+                  {% csrf_token %}
+                  {{ faltantes | crispy }}
+                  <a href="{% url 'encuesta'%}"> 
+                    
+                    <button class="btn btn-sm btn-primary" method='post'>Modificar y continuar la encuesta</button>
+                  </a>
+                </form>
+            </div>
+            
+        </div>
+    <div>
+    
+    
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Edición de un Empleado de {{ empresa }}
+{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<H1>Empresa: {{empleado.trabajaEn}} </H1>
+
+<div class= "container">
+    
+            <div class= "card mx-auto" style="width: 50rem;">
+                <div class = "card-body">
+                    <h5 class="card-title">Datos del trabajador</h5>
+                    <form method = "post">
+                        {% csrf_token %}
+                        {{ forma | crispy }}
+                    <div class"btn"> 
+                        <input type="reset" class= "btn btn-sm btn-danger" :to="{% url 'lista_empleados' empleado.trabajaEn.pk %}}" value="Cancelar">
+                        <input type="submit" class="btn btn-sm btn-primary" :to="{% url 'editEmpleado' empleado.id%}" value="Guardar">
+                    </div>
+                    </form>
+                    </div>
+            </div>
+            
+       
+        
+</div>
+    
+{% endblock %}

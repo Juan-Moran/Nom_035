@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+{% load static%}
+Editar empresa
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <H1>Editar empresa: {{nombre}}</H1>
+    {% if messages %}
+    <ul class= "messages">
+        {% for mensaje in messages %}
+            {{ mensaje | safe }}
+        {% endfor %}
+    </ul>
+
+{% endif %}     
+
+<div class= "container">
+    
+    <div class= "card mx-auto" style="width: 50rem;">
+        <div class = "card-body">
+            <h5 class="card-title">Datos de la empresa</h5>
+            <form method = "post">
+                {% csrf_token %}
+                {{ empresa | crispy }}
+            <div class"btn"> 
+                <input type="submit" class= "btn btn-sm btn-danger" :to="{% url 'ver_empresas' patron %}}" value="Cancelar">
+                <input type="submit" class="btn btn-sm btn-primary" :to="{% url 'edita_empresa' id %}" value="Guardar">
+            </div>
+            </form>
+            </div>
+    </div>
+
+    
+{% endblock %}
+

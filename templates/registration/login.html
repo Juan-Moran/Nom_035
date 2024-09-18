@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+Entrar al sistema
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<H1>Login</H1>
+<form action="" method='post'>
+    {% csrf_token %}
+
+    <div class= "card mx-auto" style="width: 30rem;">
+        <div class = "card-body">
+            <h5 class="card-title">Ingresa tus datos</h5>
+            {{ form | crispy }}
+
+            <a href={% url 'entrada' %} class="card-link"> Inicio</a>
+            <button class="btn btn-sm btn-primary float-end" type="submit">Inicar sesión</button>
+        </div>    
+    </div>
+   
+   
+</form>             
+
+{% endblock %}

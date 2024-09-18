@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+varios empleados de {{ empresa }}
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+<H1>Empresa: {{empresa}} </H1>
+<div class= "row">
+  <div class= "col-12 col-md-6 offset-md-3">
+    <div class= "card mx-auto" style="width: 50rem;">
+        <div class = "card-body">
+            <h5 class="card-title">Subir un archivo de Excel con datos de los trabajadores</h5>
+            <p>Seleccione el archivo a cargar con los datos de los trabajadores de {{empresa}}.</p>
+            <p>verifique que el archivo a usar:</p>
+            <ul>
+                <li>Tenga los datos previamente cargados. </li>
+                <li>Que no haya trabajadores que ya se han registrado en la empresa. </li>
+                <li>Use sólo el archivo que se le proporcionó para esta opción. </li>
+            </ul>
+            <form action = "{% url 'ag_empleados' empresa.id%}" method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class= "btn btn-sm btn-primary" onclick="{% url 'ag_empleados' empresa.id%}" value="Agregar">
+                  
+            </form>
+            {% if uploaded_file_url %}
+            <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+
+     
+{% endblock %}

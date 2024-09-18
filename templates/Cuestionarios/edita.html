@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+Edición del reactivo
+{% endblock %}
+
+{% block body %}
+    <form method="POST">
+      {% csrf_token %}
+    <div class= "container">
+        <div class = "row">
+            <div class = "col">
+                {{ forma }}
+              <button type= "submit">Guardar</button>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock %}

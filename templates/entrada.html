@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+{% load static%}
+SANOM-035
+{% endblock %}
+
+{% block body %}
+    <H1>Sistema para Aplicar la Norma Oficial Méxicana NOM-035 STPS-2018</H1>
+    {% if messages %}
+    <ul class= "messages">
+        {% for mensaje in messages %}
+            {{ mensaje | safe }}
+        {% endfor %}
+    </ul>
+
+{% endif %}     
+
+    <div class= "container">
+        <div class = "row">
+            <div class = "col">
+                <h3>Bienvenido: {{usuario}}<Br></h5> tus opciones son:
+            {% if menu == 1 %} <! Es un Administrador -->
+                <a href="/admin/">Administración del sitio</a>&nbsp&nbsp
+                <a href="{% url 'registra' %}">Nuevo empresario</a>&nbsp&nbsp
+                <a href="{% url 'empresarios' %}">Lista de empresarios</a>&nbsp&nbsp
+                <a href="{% url 'logout' %}">salir</a>
+            {% elif menu == 2 %}<! Es un Empresario -->
+                <a href="{% url 'ver_empresas' extra %}">Empresas</a>&nbsp&nbsp
+                <a href="{% url 'exit' %}">Salir</a>
+            {% elif menu == 3 %}<! Es un Trabajador de una empresa -->
+                <a href="{% url 'encuesta' %}">Encuesta</a>    
+            {% else %}<! Es un usuario no logueado -->
+                <a href="{% url 'login' %}">Entrar</a>
+            {% endif %}
+            </div>
+            <div align="center"><img  src="{% static 'img/paisaje.jpg' %}" class="img-fluid"></div>
+        <div>
+    </div>
+
+    
+{% endblock %}
+

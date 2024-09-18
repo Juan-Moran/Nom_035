@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+Lista de Empresas de {{ patron.nombre }}
+{% endblock %}
+
+{% block body %}
+<H1> Empresas registradas a nombre de: {{patron.nombre}} </H1>
+<style>
+    table, th, td {
+    border: 1px solid black;
+    font-size 10;
+    border-collapse: collapse;}
+
+    .col-empresa {
+        width: 450px;
+        word-wrap: break-word;}
+</style>
+<div class= "container">
+    <div class = "row">
+        <div class = "col">
+            <table class = "table table-hover table-strip table-primary">
+                <tr><th class = "col-empresa table table-dark" >Empresa/Razón Social</th>
+                    <th class = "table table-dark">Domicilio</th>
+                    <th class = "table table-dark">Actividad</th>
+                    <th class = "table table-dark">Acción</th>
+                </tr>
+                
+                {% for emp,dom,num,id in empresa %}
+                    <tr>
+                        <td class="col-empresa">{{ emp }}</td>
+                        <td>{{ dom }} </td>
+                        <td>{{ num }} </td>
+                        <td><a href="{% url 'lista_empleados' id %}"><button class="btn btn-primary">Seleccionar</button></a><p></p>
+                            <a href='{% url 'edita_empresa' id %}'><button class="btn btn-success">Editar</button></a><p></p> 
+                            {% if menu %}
+                            <a href="{% url 'conclusion' id %}"><button class="btn btn-warning" >descargar</button></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                <td> Nada que mostrar </td>
+                {% endfor %}
+                
+            </table>
+            <a href="/Empresario/crea/{{patron.id}}">
+                <button class="btn btn-info">Agregar una empresa</button></a>
+        </div>
+    </div>    
+</div>
+    
+{% endblock %}

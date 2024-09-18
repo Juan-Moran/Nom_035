@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+Agregar una empresa 
+{% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<H1>Agregar una empresa de: {{patron}}</H1>
+<style>
+    table, th, td {
+    border: 1px solid black;
+    font-size 10;
+    border-collapse: collapse;}
+</style>
+<div class= "container">
+    <div class = "row">
+        <div class= "col-12 col-md-6 offset-md-3">
+            <form id="empresa">
+                {% csrf_token %}
+                {{ forma | crispy  }}
+            
+            </form>
+            <a href="{% url 'crea_empresa' patron.id %}" metod="post">
+                <button class="btn btn-primary">Agregar</button>
+            </a>
+            <a href="/Empresario/{{patron.pk}}">
+                <button class="btn btn-danger" >Cancelar</button>
+            </a>
+        </div>
+    </div>    
+</div>
+    
+{% endblock %}
